@@ -1,53 +1,66 @@
-# APS Security Platform - Frontend Challenge
+# APS — Fenrir Security Platform
 
 A professional B2B SaaS security platform developed for the Fenrir Security technical screening.
 
-## 🚀 Live Demo
-[Deployment Link will be here after user deploys]
+## 🌐 Live Demo
+
+**[https://aps-self.vercel.app](https://aps-self.vercel.app)**
+
+> Navigate: Login → Dashboard → Click any scan row → Scan Detail
+
+## 🗂️ Pages
+
+| Route | Description |
+|---|---|
+| `/login` | Premium split-screen login with social auth |
+| `/dashboard` | Scan list with stats, search, filters |
+| `/scans/1` | Live scan detail with terminal console & findings |
 
 ## 🛠 Tech Stack
-- **Framework**: React 18 (Vite)
-- **Styling**: Vanilla CSS (High-end custom design system)
-- **Icons**: Lucide React
-- **Animations**: Framer Motion
-- **Navigation**: React Router DOM (with page transitions)
-- **Feedback**: React Hot Toast
 
-## ✨ Key Features
-- **Three Core Screens**: 
-  - **Login/Sign-up**: Premium split-layout with interactive form and social logins.
-  - **Dashboard**: Full-featured scan list with status chips, progress bars, and vulnerability badges.
-  - **Scan Detail**: Real-time terminal console emulator with highlighted syntax, step tracker, and finding cards.
-- **Bi-Directional Theme Support**: Fully functional Dark and Light modes with instant transition and persistence.
-- **Fully Responsive**: Optimized for mobile (375px) up to ultra-wide desktop displays.
-- **Interactive Elements**: Functional tabs, search filtering, hover states, and toast notifications for all CTAs.
-- **Page Transitions**: Smooth slide-and-fade animations between routes.
+| Technology | Usage |
+|---|---|
+| **React 18 + Vite** | Core framework & build tool |
+| **Vanilla CSS** | Custom design system (no Tailwind) |
+| **Framer Motion** | Page transitions & micro-animations |
+| **React Router DOM** | Client-side routing |
+| **Lucide React** | Icon library |
+| **React Hot Toast** | Notification feedback |
 
-## 📦 Setup Instructions
+## ✨ Features Implemented
 
-1. **Clone the repository**:
-   ```bash
-   git clone <repo-url>
-   cd Exam_Cloud
-   ```
+### Core
+- **Login Page** — Split-screen layout, dark cinematic gradient background (navy → teal → orange glow), social login buttons (Google, Meta), form validation
+- **Dashboard** — Stats strip (Critical/High/Medium/Low), scan table with search, progress bars, vulnerability badges, pagination
+- **Scan Detail** — Step tracker (Spidering → Reporting), circular progress ring, live terminal console with color-coded output, Finding Log panel
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+### Bonus ✅
+- **Skeleton loaders** — shimmer loading states while mock data resolves
+- **Staggered animations** — stats cards animate in sequence on page load
+- **Reusable UI Library** — `SeverityBadge`, `StatusChip`, `Button` components at `src/components/ui/`
+- **Keyboard navigation** — table rows focusable via Tab, activatable via Enter/Space
+- **ARIA labels** — full accessibility support on all interactive elements
+- **Dark / Light mode** — theme toggle with localStorage persistence
 
-3. **Run development server**:
-   ```bash
-   npm run dev
-   ```
+## 📦 Local Setup
 
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
+```bash
+# Clone the repo
+git clone https://github.com/Shweta-Tech-creator/APS.git
+cd APS
 
-## 📝 Design Decisions
-- **Typography**: Used 'Inter' for UI excellence and 'JetBrains Mono' for terminal simulation.
-- **Color Palette**: Primary teal (#0CC8A8) used for key CTAs. Severity colors follow industry standards (Red, Orange, Amber, Green).
-- **Themes**: Dark mode uses a curated near-black palette (#0F0F0F) rather than simple inversion to maintain premium contrast.
-- **Vanilla CSS**: Optimized for performance and precise control over glassmorphism and animations.
+# Install dependencies
+npm install
+
+# Run dev server
+npm run dev
+# → http://localhost:5173
+```
+
+## � Design Decisions
+
+- **Typography**: `Inter` for UI, `JetBrains Mono` for terminal simulation
+- **Accent Color**: `#0CC8A8` teal across all CTAs and active states
+- **Severity Colors**: Industry-standard — Red (Critical), Orange (High), Amber (Medium), Green (Low)
+- **Dark Mode**: Deep navy `#0F1117` base — premium contrast, not a simple inversion
+- **Scan Detail**: Always dark UI to simulate a real security console feel
