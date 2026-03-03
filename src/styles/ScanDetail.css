@@ -1,0 +1,656 @@
+/* ═══════════════════════════════════════════════════════════
+   ScanDetail — Dark, matches the reference screenshot exactly
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Root layout ── */
+.sd-root {
+    display: flex;
+    background: #0f1117;
+    min-height: 100vh;
+}
+
+.sd-main {
+    flex: 1;
+    margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background: #0f1117;
+    color: #e4e4e4;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── Header ── */
+.sd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+    background: #0f1117;
+}
+
+.sd-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sd-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sd-back-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #aaa;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sd-back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sd-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.sd-sep {
+    color: rgba(255, 255, 255, 0.2);
+    margin: 0 0.15rem;
+}
+
+.sd-dim {
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 400;
+}
+
+.sd-active {
+    color: #0CC8A8;
+    font-weight: 600;
+}
+
+.sd-btn-icon {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #999;
+    padding: 0.45rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sd-btn-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sd-btn-outline {
+    padding: 0.5rem 1.2rem;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #ccc;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.sd-btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.sd-btn-danger {
+    padding: 0.5rem 1.2rem;
+    background: rgba(255, 77, 77, 0.1);
+    border: 1.5px solid rgba(255, 77, 77, 0.6);
+    border-radius: 10px;
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ── Progress Card ── */
+.sd-progress-card {
+    margin: 1.25rem 2rem;
+    background: #181c26;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 1.5rem 2rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Top row: circle + steps */
+.sd-progress-top {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+/* Circular progress */
+.sd-circle {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+}
+
+.sd-circle-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.sd-circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.07);
+    stroke-width: 8;
+}
+
+.sd-circle-fg {
+    fill: none;
+    stroke: #0CC8A8;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 251;
+    stroke-dashoffset: 251;
+}
+
+.sd-circle-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+}
+
+.sd-circle-pct {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0CC8A8;
+    line-height: 1;
+}
+
+.sd-circle-status {
+    font-size: 0.7rem;
+    color: #777;
+}
+
+/* Step tracker */
+.sd-steps {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sd-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+.sd-step-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    transition: all 0.3s;
+}
+
+.sd-step.active .sd-step-icon {
+    background: #0CC8A8;
+    border-color: #0CC8A8;
+    color: #000;
+    box-shadow: 0 0 18px rgba(12, 200, 168, 0.45);
+}
+
+.sd-step-label {
+    font-size: 0.72rem;
+    color: #555;
+    white-space: nowrap;
+}
+
+.sd-step.active .sd-step-label {
+    color: #0CC8A8;
+    font-weight: 600;
+}
+
+.sd-step-line {
+    flex: 1;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.07);
+    min-width: 30px;
+    max-width: 100px;
+    margin-bottom: 22px;
+}
+
+/* Meta row */
+.sd-meta-row {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding-top: 1.1rem;
+}
+
+.sd-meta-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-right: 1rem;
+}
+
+.sd-meta-item+.sd-meta-item {
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.sd-meta-label {
+    font-size: 0.68rem;
+    color: #666;
+    text-transform: none;
+}
+
+.sd-meta-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #e4e4e4;
+}
+
+/* ── Console Container ── */
+.sd-console-container {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    margin: 0 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #13151e;
+}
+
+/* ── Console Panel ── */
+.sd-console-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.sd-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+}
+
+.sd-panel-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sd-panel-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.sd-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #0CC8A8;
+    box-shadow: 0 0 6px #0CC8A8;
+    animation: live-pulse 2s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 6px #0CC8A8;
+    }
+
+    50% {
+        opacity: 0.4;
+        box-shadow: none;
+    }
+}
+
+.sd-panel-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ddd;
+}
+
+.sd-running-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    padding: 0.22rem 0.7rem;
+    font-size: 0.72rem;
+    color: #aaa;
+}
+
+.sd-spin {
+    animation: spin-anim 2s linear infinite;
+}
+
+@keyframes spin-anim {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tabs */
+.sd-tabs {
+    display: flex;
+    padding: 0 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+    gap: 0;
+}
+
+.sd-tab {
+    padding: 0.7rem 0;
+    margin-right: 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #555;
+    font-size: 0.83rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.sd-tab.active {
+    color: #0CC8A8;
+    border-bottom-color: #0CC8A8;
+    font-weight: 600;
+}
+
+.sd-tab:hover:not(.active) {
+    color: #aaa;
+}
+
+/* Console body */
+.sd-console-body {
+    flex: 1;
+    padding: 1.25rem 1.5rem;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.8rem;
+    line-height: 1.75;
+    color: #b8b8b8;
+}
+
+.sd-log-line {
+    margin-bottom: 0.5rem;
+}
+
+.sd-link {
+    color: #0CC8A8;
+}
+
+.sd-string {
+    color: #f97316;
+}
+
+.sd-path {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-size: 0.78rem;
+}
+
+.sd-bold {
+    color: #0CC8A8;
+    font-weight: 700;
+}
+
+.sd-indent {
+    padding-left: 2rem;
+    color: #777;
+    font-style: italic;
+    display: block;
+}
+
+.sd-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 0.9rem;
+    background: #0CC8A8;
+    vertical-align: text-bottom;
+    animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ── Findings Panel ── */
+.sd-findings-panel {
+    width: 310px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #13151e;
+}
+
+.sd-findings-header {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ccc;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+}
+
+.sd-findings-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.sd-finding-card {
+    background: #1a1e2c;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    border-left: 3px solid transparent;
+}
+
+.sd-finding-card.critical {
+    border-left-color: #ff4d4d;
+}
+
+.sd-finding-card.high {
+    border-left-color: #ff8a00;
+}
+
+.sd-finding-card.medium {
+    border-left-color: #ffb800;
+}
+
+.sd-finding-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.sd-finding-time {
+    font-size: 0.7rem;
+    color: #555;
+}
+
+.sd-sev-badge {
+    padding: 0.18rem 0.55rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sd-sev-badge.critical {
+    background: #ff4d4d;
+}
+
+.sd-sev-badge.high {
+    background: #ff8a00;
+}
+
+.sd-sev-badge.medium {
+    background: #ffb800;
+    color: #111;
+}
+
+.sd-finding-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+}
+
+.sd-finding-path {
+    font-size: 0.72rem;
+    color: #0CC8A8;
+    font-family: monospace;
+    margin-bottom: 0.4rem;
+}
+
+.sd-finding-desc {
+    font-size: 0.73rem;
+    color: #777;
+    line-height: 1.5;
+}
+
+/* ── Footer ── */
+.sd-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    background: #0f1117;
+    flex-shrink: 0;
+}
+
+.sd-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.sd-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.sd-footer-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #777;
+}
+
+.sd-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #0CC8A8;
+}
+
+.sd-sev-stat {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.sd-sev-stat.critical {
+    color: #ff4d4d;
+}
+
+.sd-sev-stat.high {
+    color: #ff8a00;
+}
+
+.sd-sev-stat.medium {
+    color: #ffb800;
+}
+
+.sd-sev-stat.low {
+    color: #00c853;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .sd-main {
+        margin-left: 80px;
+    }
+
+    .sd-progress-card,
+    .sd-console-container {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    .sd-findings-panel {
+        width: 250px;
+    }
+
+    .sd-footer,
+    .sd-header {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}
